@@ -1,12 +1,16 @@
 <?php
 
+use yii\queue\file\Queue;
+use yii\queue\gii\Generator;
+use yii\queue\LogBehavior;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -25,6 +29,10 @@ $config = [
                 ],
             ],
         ],
+        'queue' => [
+            'class' => Queue::class,
+            'as log' => LogBehavior::class
+        ],
         'db' => $db,
     ],
     'params' => $params,
@@ -42,6 +50,11 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [
+            'job' => [
+                'class' => Generator::class
+            ]
+        ]
     ];
 }
 
