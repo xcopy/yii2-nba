@@ -1,0 +1,8 @@
+- `composer install && composer dump`
+- `cp .env.dist .env`
+- Setup database in your `.env` file
+- `./yii migrate`
+- `./yii storage/link`
+- `./yii team/fetch-logos`
+- `./yii queue/run -v`
+- `./yii serve` (optional)
