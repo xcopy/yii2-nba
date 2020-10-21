@@ -13,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property int $division_id
  *
+ * @property Manager[] $managers
  * @property Division $division
  */
 class Team extends ActiveRecord
@@ -48,6 +49,16 @@ class Team extends ActiveRecord
             'name' => 'Name',
             'division_id' => 'Division ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Managers]].
+     *
+     * @return ActiveQuery
+     */
+    public function getManagers()
+    {
+        return $this->hasMany(Manager::class, ['team_id' => 'id']);
     }
 
     /**
