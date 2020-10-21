@@ -1,11 +1,10 @@
 <?php
 
-use yii\queue\file\Queue;
 use yii\queue\gii\Generator;
-use yii\queue\LogBehavior;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$queue = require __DIR__ . '/queue.php';
 
 $config = [
     'id' => 'basic-console',
@@ -29,10 +28,7 @@ $config = [
                 ],
             ],
         ],
-        'queue' => [
-            'class' => Queue::class,
-            'as log' => LogBehavior::class
-        ],
+        'queue' => $queue,
         'db' => $db,
     ],
     'params' => $params,

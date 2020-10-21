@@ -2,12 +2,13 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$queue = require __DIR__ . '/queue.php';
 
 $config = [
     'id' => 'basic',
     'name' => 'NBA',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -42,6 +43,7 @@ $config = [
                 ],
             ],
         ],
+        'queue' => $queue,
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -58,6 +60,9 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'panels' => [
+            'queue' => 'yii\queue\debug\Panel'
+        ]
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
