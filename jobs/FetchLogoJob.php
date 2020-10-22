@@ -37,16 +37,16 @@ class FetchLogoJob extends BaseObject implements RetryableJobInterface
 
             $data = json_decode($json);
 
-            $dir = Yii::getAlias('@storage').'/'.$slug;
+            $dir = Yii::getAlias('@storage').'/'.$slug.'/Logo';
 
-            is_dir($dir) or mkdir($dir);
+            is_dir($dir) or mkdir($dir, 0755, true);
 
             if ($data->items[0] && $data->items[0]->srcset) {
-                foreach ($data->items[0]->srcset as $set) {
-                    $filename = $dir.'/'.basename($set->src);
+                foreach ($data->items[0]->srcset as $i => $set) {
+                    $filename = $dir.'/Logo-'.$i.'.'.pathinfo(basename($set->src), PATHINFO_EXTENSION);
 
                     file_exists($filename) or $http->get($set->src, [
-                        RequestOptions::SINK => $dir.'/'.basename($set->src)
+                        RequestOptions::SINK => $filename
                     ]);
                 }
             }
