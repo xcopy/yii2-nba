@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property int $division_id
  *
  * @property Manager[] $managers
+ * @property Player[] $players
  * @property Division $division
  */
 class Team extends ActiveRecord
@@ -59,6 +60,16 @@ class Team extends ActiveRecord
     public function getManagers()
     {
         return $this->hasMany(Manager::class, ['team_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Players]].
+     *
+     * @return ActiveQuery
+     */
+    public function getPlayers()
+    {
+        return $this->hasMany(Player::class, ['team_id' => 'id']);
     }
 
     /**
