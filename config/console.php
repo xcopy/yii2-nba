@@ -38,7 +38,7 @@ $config = [
     'controllerMap' => [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => null,
+            'migrationPath' => '@app/migrations',
             'migrationNamespaces' => [
                 'yii\queue\db\migrations'
             ]
