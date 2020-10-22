@@ -2,7 +2,6 @@
 
 use yii\db\Migration;
 use Faker\Factory as FakerFactory;
-use app\models\Team;
 
 /**
  * Handles the creation of table `{{%manager}}`.
@@ -39,12 +38,11 @@ class m201021_120353_create_manager_table extends Migration
 
         $faker = FakerFactory::create();
 
-        /** @var Team $team */
-        foreach (Team::find()->all() as $team) {
+        for ($i = 1; $i <= 30; $i++) {
             $this->insert('{{%manager}}', [
                 'name' => $faker->name('male'),
                 'email' => $faker->email,
-                'team_id' => $team->primaryKey
+                'team_id' => $i
             ]);
         }
     }
