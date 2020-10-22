@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Conference;
+use yii\helpers\Inflector;
 
 /* @var Conference[] $conferences */
 /* @var Conference $conference */
@@ -18,7 +19,10 @@ use app\models\Conference;
 
                     <ul class="list-unstyled">
                         <?php foreach ($division->teams as $team): ?>
-                            <li><?= $team->name ?></li>
+                            <li class="d-flex align-items-center my-3">
+                                <div class="mr-3" style="width: 50px; height: 50px; background: url('/storage/<?= Inflector::slug($team->name, '_', false) ?>/Logo/Logo-0.png') center / contain no-repeat"></div>
+                                <h6 class="m-0"><?= $team->name ?></h6>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
