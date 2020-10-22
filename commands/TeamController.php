@@ -27,8 +27,9 @@ class TeamController extends Controller
 
         $ids = $teamId ? [$teamId] : ArrayHelper::getColumn(Team::find()->all(), 'id');
 
-        foreach ($ids as $id) {
-            $queue->push(new FetchLogoJob(['teamId' => $id]));
+        foreach ($ids as $i => $id) {
+            $delay = ($i + 1) * env('QUEUE_DELAY');
+            $queue->delay($delay)->push(new FetchLogoJob(['teamId' => $id]));
         }
 
         $this->stdout(count($ids)." job(s) pushed into queue\n", Console::FG_GREEN);
