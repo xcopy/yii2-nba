@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -19,14 +18,6 @@ use yii\db\ActiveRecord;
  */
 class Team extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'team';
-    }
-
     /**
      * {@inheritdoc}
      */
