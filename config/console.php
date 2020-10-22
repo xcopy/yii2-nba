@@ -4,6 +4,7 @@ use yii\queue\gii\Generator;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$redis = require __DIR__ . '/redis.php';
 $queue = require __DIR__ . '/queue.php';
 
 $config = [
@@ -29,6 +30,7 @@ $config = [
                 ],
             ],
         ],
+        'redis' => $redis,
         'queue' => $queue,
         'db' => $db,
     ],
