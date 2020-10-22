@@ -1,6 +1,6 @@
 - `composer install && composer dump`
 - `cp .env.dist .env`
-- Setup database & queue params in your `.env` file
+- Configure database & queue params in your `.env` file (install `redis-server` & `redis-tools`)
 - `./yii migrate`
 - `./yii storage/link`
 - `./yii team/fetch-logos`
