@@ -51,6 +51,25 @@ use yii\base\Module as BaseModule;
  */
 
 /**
+ * @OA\Schema(
+ *     schema="id",
+ *     type="integer",
+ *     format="int64"
+ * )
+ *
+ * @OA\Schema(
+ *     schema="name",
+ *     type="string"
+ * )
+ *
+ * @OA\Schema(
+ *     schema="date",
+ *     type="string",
+ *     format="date"
+ * )
+ */
+
+/**
  * @OA\Info(
  *     title="Yii2 NBA API",
  *     description="Awesome NBA API server",
