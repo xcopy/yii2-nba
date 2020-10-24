@@ -19,6 +19,14 @@ $config = [
         'request' => [
             'cookieValidationKey' => '-dQsEa3_Tc8u7_NzoZ4BEVrW77mOR-_7',
         ],
+        'response' => [
+            'formatters' => [
+                'json' => [
+                    'class' => 'yii\web\JsonResponseFormatter',
+                    'prettyPrint' => YII_DEBUG
+                ]
+            ]
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
