@@ -13,6 +13,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@api'   => '@app/modules/api',
     ],
     'components' => [
         'request' => [
@@ -55,6 +56,11 @@ $config = [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module'
+        ]
+    ]
 ];
 
 if (YII_ENV_DEV) {
