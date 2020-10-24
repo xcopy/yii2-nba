@@ -6,7 +6,18 @@ use Yii;
 use yii\base\Module as BaseModule;
 
 /**
- * app-api module definition class
+ * @OA\Info(
+ *     title="Yii2 NBA API",
+ *     description="Awesome NBA API server",
+ *     version="0.1",
+ *     @OA\Contact(
+ *         email="support@localhost"
+ *     )
+ * )
+ * @OA\Server(
+ *     url="http://localhost:8080/api/v1",
+ *     description="Local API server"
+ * )
  */
 class Module extends BaseModule
 {
