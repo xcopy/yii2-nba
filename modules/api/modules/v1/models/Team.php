@@ -9,7 +9,7 @@ use app\models\Team as BaseTeam;
  *     @OA\Property(property="id",ref="#/components/schemas/id"),
  *     @OA\Property(property="name",ref="#/components/schemas/name"),
  *     @OA\Property(property="division_id",ref="#/components/schemas/id"),
- *     required={"id","name","division_id"}
+ *     required={"name","division_id"}
  * )
  */
 class Team extends BaseTeam
