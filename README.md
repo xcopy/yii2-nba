@@ -14,4 +14,4 @@
 ## OpenAPI
 - `./vendor/bin/openapi ./modules/api --output web/` (`--format json`, optional)
 - `./yii serve`
-- Go to http://localhost:8080/api
+- Go to http://localhost:8080/api/v1
