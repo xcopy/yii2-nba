@@ -16,43 +16,33 @@ use app\modules\api\modules\v1\models\Team;
  *         response="200",
  *         description="Paginated list of teams",
  *         @OA\JsonContent(ref="#/components/schemas/ArrayOfTeams")
- *     )
+ *     ),
+ *     @OA\Response(response="default",ref="#/components/responses/default")
  * )
  *
  * @OA\Post(
  *     path="/team/create",
  *     summary="Create new team",
- *     @OA\RequestBody(
- *         @OA\MediaType(
- *             mediaType="application/x-www-form-urlencoded",
- *             @OA\Schema(ref="#/components/schemas/Team")
- *         )
- *     ),
- *     @OA\Response(
- *         response="200",
- *         description="Successful operation",
- *         @OA\JsonContent(ref="#/components/schemas/Team")
- *     ),
- *     @OA\Response(
- *         response="default",
- *         description="An unexpected error",
- *         @OA\JsonContent(ref="#/components/schemas/Error")
- *     )
+ *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
+ *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
+ *     @OA\Response(response="default",ref="#/components/responses/default"),
+ * )
+ *
+ * @OA\Put(
+ *     path="/team/update",
+ *     summary="Update a team",
+ *     @OA\Parameter(ref="#/components/parameters/id"),
+ *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
+ *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
+ *     @OA\Response(response="default",ref="#/components/responses/default"),
  * )
  *
  * @OA\Delete(
  *     path="/team/delete",
  *     summary="Delete a team",
  *     @OA\Parameter(ref="#/components/parameters/id"),
- *     @OA\Response(
- *         response="204",
- *         description="Successful operation"
- *     ),
- *     @OA\Response(
- *         response="default",
- *         description="An unexpected error",
- *         @OA\JsonContent(ref="#/components/schemas/Error")
- *     )
+ *     @OA\Response(response="204",description="Deleted successfully"),
+ *     @OA\Response(response="default",ref="#/components/responses/default")
  * )
  */
 class TeamController extends ActiveController

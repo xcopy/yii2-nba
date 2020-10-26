@@ -15,7 +15,8 @@ use app\modules\api\modules\v1\models\Player;
  *         response="200",
  *         description="Paginated list of players",
  *         @OA\JsonContent(ref="#/components/schemas/ArrayOfPlayers")
- *     )
+ *     ),
+ *     @OA\Response(response="default",ref="#/components/responses/default")
  * )
  *
  * @OA\Get(
@@ -27,11 +28,7 @@ use app\modules\api\modules\v1\models\Player;
  *         description="Player details",
  *         @OA\JsonContent(ref="#/components/schemas/Player")
  *     ),
- *     @OA\Response(
- *         response="default",
- *         description="An unexpected error",
- *         @OA\JsonContent(ref="#/components/schemas/Error")
- *     )
+ *     @OA\Response(response="default",ref="#/components/responses/default")
  * )
  */
 class PlayerController extends ActiveController
