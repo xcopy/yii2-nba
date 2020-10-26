@@ -54,7 +54,7 @@ use yii\base\Module as BaseModule;
  *     name="id",
  *     in="query",
  *     required=true,
- *     @OA\Schema(type="integer",format="int64")
+ *     @OA\Schema(type="integer",format="int64",minimum=1)
  * )
  */
 
