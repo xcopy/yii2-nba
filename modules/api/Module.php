@@ -48,6 +48,14 @@ use yii\base\Module as BaseModule;
  *     required=false,
  *     @OA\Schema(type="string")
  * )
+ *
+ * @OA\Parameter(
+ *     parameter="id",
+ *     name="id",
+ *     in="query",
+ *     required=true,
+ *     @OA\Schema(type="integer",format="int64")
+ * )
  */
 
 /**

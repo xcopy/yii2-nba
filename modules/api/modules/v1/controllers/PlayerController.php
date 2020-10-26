@@ -14,10 +14,18 @@ use app\modules\api\modules\v1\models\Player;
  *     @OA\Response(
  *         response="200",
  *         description="Paginated list of the players",
- *         @OA\MediaType(
- *             mediaType="application/json",
- *             @OA\Schema(ref="#/components/schemas/ArrayOfPlayers")
- *         )
+ *         @OA\JsonContent(ref="#/components/schemas/ArrayOfPlayers")
+ *     )
+ * )
+ *
+ * @OA\Get(
+ *     path="/player/view",
+ *     @OA\Parameter(ref="#/components/parameters/id"),
+ *     @OA\Parameter(ref="#/components/parameters/expand"),
+ *     @OA\Response(
+ *         response="200",
+ *         description="Player details",
+ *         @OA\JsonContent(ref="#/components/schemas/Player")
  *     )
  * )
  */
