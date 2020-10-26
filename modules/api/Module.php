@@ -5,6 +5,7 @@ namespace app\modules\api;
 use Yii;
 use yii\base\Module as BaseModule;
 
+// COMMON PARAMETERS
 /**
  * @OA\Parameter(
  *     parameter="_format",
@@ -23,11 +24,7 @@ use yii\base\Module as BaseModule;
  *     name="page",
  *     in="query",
  *     required=false,
- *     @OA\Schema(
- *         type="integer",
- *         format="int64",
- *         default=1
- *     )
+ *     @OA\Schema(type="integer",format="int64",minimum=1)
  * )
  *
  * @OA\Parameter(
@@ -35,10 +32,7 @@ use yii\base\Module as BaseModule;
  *     name="sort",
  *     in="query",
  *     required=false,
- *     @OA\Schema(
- *         type="string",
- *         default="id"
- *     )
+ *     @OA\Schema(type="string")
  * )
  *
  * @OA\Parameter(
@@ -58,23 +52,11 @@ use yii\base\Module as BaseModule;
  * )
  */
 
+// COMMON SCHEMAS
 /**
- * @OA\Schema(
- *     schema="id",
- *     type="integer",
- *     format="int64"
- * )
- *
- * @OA\Schema(
- *     schema="name",
- *     type="string"
- * )
- *
- * @OA\Schema(
- *     schema="date",
- *     type="string",
- *     format="date"
- * )
+ * @OA\Schema(schema="id",type="integer",format="int64")
+ * @OA\Schema(schema="name",type="string")
+ * @OA\Schema(schema="date",type="string",format="date")
  *
  * @OA\Schema(
  *     schema="Error",

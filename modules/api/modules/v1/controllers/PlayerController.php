@@ -13,7 +13,7 @@ use app\modules\api\modules\v1\models\Player;
  *     @OA\Parameter(ref="#/components/parameters/expand"),
  *     @OA\Response(
  *         response="200",
- *         description="Paginated list of the players",
+ *         description="Paginated list of players",
  *         @OA\JsonContent(ref="#/components/schemas/ArrayOfPlayers")
  *     )
  * )

@@ -10,6 +10,12 @@ use yii\base\Module as BaseModule;
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/Player")
  * )
+ *
+ * @OA\Schema(
+ *     schema="ArrayOfTeams",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/Team")
+ * )
  */
 
 /**
