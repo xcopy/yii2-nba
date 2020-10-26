@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js" charset="UTF-8"></script>
     <script>
         SwaggerUIBundle({
-            url: '/openapi.json',
+            url: '/openapi.yaml',
             dom_id: '#swagger-ui'
         })
     </script>

@@ -12,6 +12,6 @@
 - `./yii queue/run -v` (or `./yii queue/listen -v`)
 
 ## OpenAPI
-- `./vendor/bin/openapi ./modules/api --output web/openapi.json`
+- `./vendor/bin/openapi ./modules/api --output web/` (`--format json`, optional)
 - `./yii serve`
-- Go to http://localhost:8080/openapi.json
+- Go to http://localhost:8080/api
