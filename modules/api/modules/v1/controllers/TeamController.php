@@ -39,6 +39,21 @@ use app\modules\api\modules\v1\models\Team;
  *         @OA\JsonContent(ref="#/components/schemas/Error")
  *     )
  * )
+ *
+ * @OA\Delete(
+ *     path="/team/delete",
+ *     summary="Delete a team",
+ *     @OA\Parameter(ref="#/components/parameters/id"),
+ *     @OA\Response(
+ *         response="204",
+ *         description="Successful operation"
+ *     ),
+ *     @OA\Response(
+ *         response="default",
+ *         description="An unexpected error",
+ *         @OA\JsonContent(ref="#/components/schemas/Error")
+ *     )
+ * )
  */
 class TeamController extends ActiveController
 {
