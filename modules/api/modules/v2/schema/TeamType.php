@@ -17,8 +17,7 @@ class TeamType extends ObjectType
                 return [
                     'id' => ['type' => Type::id()],
                     'name' => ['type' => Type::string()],
-                    'players' => Type::listOf(new PlayerType)
-                    // OR 'players' => Type::listOf(Types::player())
+                    'players' => Type::listOf(Types::player())
                 ];
             }
         ];

@@ -18,8 +18,7 @@ class QueryType extends ObjectType
             'fields' => function (): array {
                 return [
                     'player' => [
-                        'type' => new PlayerType,
-                        // OR 'type' => Types::player()
+                        'type' => Types::player(),
                         'args' => [
                             'id' => Type::nonNull(Type::id())
                         ],
@@ -28,7 +27,7 @@ class QueryType extends ObjectType
                         }
                     ],
                     'team' => [
-                        'type' => new TeamType,
+                        'type' => Types::team(),
                         'args' => [
                             'id' => Type::nonNull(Type::id())
                         ],

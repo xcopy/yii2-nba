@@ -4,7 +4,6 @@ namespace app\modules\api\modules\v2\schema;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use app\models\Player;
 
 class PlayerType extends ObjectType
 {
@@ -21,17 +20,7 @@ class PlayerType extends ObjectType
                     'from' => ['type' => Type::string()],
                     'height' => ['type' => Type::float()],
                     'weight' => ['type' => Type::float()],
-                    'born_at' => [
-                        'type' => Type::string(),
-                        'args' => [
-                            'format' => Type::string(),
-                            'resolve' => function (Player $player, $args): string {
-                                return isset($args['format'])
-                                    ? date($args['format'], strtotime($player->born_at))
-                                    : $player->born_at;
-                            }
-                        ]
-                    ],
+                    'born_at' => ['type' => Type::string()],
                     'drafted_at' => ['type' => Type::string()],
                     'team_id' => ['type' => Type::id()],
                     'team' => ['type' => Types::team()]
