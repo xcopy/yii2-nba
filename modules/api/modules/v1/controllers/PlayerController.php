@@ -8,17 +8,16 @@ use app\modules\api\modules\v1\models\Player;
 /**
  * @OA\Get(
  *     path="/player",
- *     @OA\Parameter(ref="#/components/parameters/_format"),
  *     @OA\Parameter(ref="#/components/parameters/page"),
  *     @OA\Parameter(ref="#/components/parameters/sort"),
  *     @OA\Parameter(ref="#/components/parameters/expand"),
  *     @OA\Response(
  *         response="200",
- *         description="Paginated list of the players"
- *     ),
- *     @OA\Response(
- *         response="default",
- *         description="An unexpected error"
+ *         description="Paginated list of the players",
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(ref="#/components/schemas/ArrayOfPlayers")
+ *         )
  *     )
  * )
  */
