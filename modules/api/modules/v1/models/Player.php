@@ -14,7 +14,6 @@ use app\models\Player as BasePlayer;
  *     @OA\Property(property="born_at",ref="#/components/schemas/date"),
  *     @OA\Property(property="drafted_at",ref="#/components/schemas/date"),
  *     @OA\Property(property="team_id",ref="#/components/schemas/id"),
- *     @OA\Property(property="team",ref="#/components/schemas/Team"),
  *     required={"name","from","height","weight","born_at","drafted_at","team_id"}
  * )
  */
