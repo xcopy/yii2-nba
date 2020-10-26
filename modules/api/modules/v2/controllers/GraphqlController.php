@@ -24,6 +24,16 @@ class GraphqlController extends ActiveController
     }
 
     /**
+     * @inheritDoc
+     */
+    protected function verbs()
+    {
+        return [
+            'index' => ['POST']
+        ];
+    }
+
+    /**
      * GraphQL basic server
      *
      * @return array|mixed[]
