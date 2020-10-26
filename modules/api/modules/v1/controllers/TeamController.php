@@ -8,7 +8,8 @@ use app\modules\api\modules\v1\models\Team;
 /**
  * @OA\Get(
  *     path="/team",
- *     summary="Get all teams",
+ *     summary="Get teams",
+ *     tags={"team"},
  *     @OA\Parameter(ref="#/components/parameters/page"),
  *     @OA\Parameter(ref="#/components/parameters/sort"),
  *     @OA\Parameter(ref="#/components/parameters/expand"),
@@ -23,6 +24,7 @@ use app\modules\api\modules\v1\models\Team;
  * @OA\Post(
  *     path="/team/create",
  *     summary="Create new team",
+ *     tags={"team"},
  *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
  *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
  *     @OA\Response(response="default",ref="#/components/responses/default"),
@@ -31,6 +33,7 @@ use app\modules\api\modules\v1\models\Team;
  * @OA\Put(
  *     path="/team/update",
  *     summary="Update a team",
+ *     tags={"team"},
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
  *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
@@ -40,6 +43,7 @@ use app\modules\api\modules\v1\models\Team;
  * @OA\Delete(
  *     path="/team/delete",
  *     summary="Delete a team",
+ *     tags={"team"},
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\Response(response="204",description="Deleted successfully"),
  *     @OA\Response(response="default",ref="#/components/responses/default")

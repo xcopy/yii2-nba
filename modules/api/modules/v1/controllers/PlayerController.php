@@ -8,6 +8,8 @@ use app\modules\api\modules\v1\models\Player;
 /**
  * @OA\Get(
  *     path="/player",
+ *     summary="Get players",
+ *     tags={"player"},
  *     @OA\Parameter(ref="#/components/parameters/page"),
  *     @OA\Parameter(ref="#/components/parameters/sort"),
  *     @OA\Parameter(ref="#/components/parameters/expand"),
@@ -21,6 +23,8 @@ use app\modules\api\modules\v1\models\Player;
  *
  * @OA\Get(
  *     path="/player/view",
+ *     summary="Get player details",
+ *     tags={"player"},
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\Parameter(ref="#/components/parameters/expand"),
  *     @OA\Response(
