@@ -8,10 +8,26 @@ use yii\helpers\Json;
 use yii\rest\ActiveController;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
-use app\modules\api\v2\schema\QueryType;
+use app\modules\api\modules\v2\schema\QueryType;
 
 class GraphqlController extends ActiveController
 {
+    /** @var string */
+    public $modelClass = '';
+
+    /**
+     * @inheritDoc
+     */
+    public function actions()
+    {
+        return [];
+    }
+
+    /**
+     * GraphQL basic server
+     *
+     * @return array|mixed[]
+     */
     public function actionIndex()
     {
         $query = Yii::$app->request->get('query', Yii::$app->request->post('query'));

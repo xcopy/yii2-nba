@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\api\v2\schema;
+namespace app\modules\api\modules\v2\schema;
 
 class Types
 {
