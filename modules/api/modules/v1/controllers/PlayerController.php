@@ -26,6 +26,11 @@ use app\modules\api\modules\v1\models\Player;
  *         response="200",
  *         description="Player details",
  *         @OA\JsonContent(ref="#/components/schemas/Player")
+ *     ),
+ *     @OA\Response(
+ *         response="default",
+ *         description="An unexpected error",
+ *         @OA\JsonContent(ref="#/components/schemas/Error")
  *     )
  * )
  */

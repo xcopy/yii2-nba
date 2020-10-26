@@ -75,6 +75,17 @@ use yii\base\Module as BaseModule;
  *     type="string",
  *     format="date"
  * )
+ *
+ * @OA\Schema(
+ *     schema="Error",
+ *     type="object",
+ *     @OA\Property(property="name",type="string"),
+ *     @OA\Property(property="message",type="string"),
+ *     @OA\Property(property="code",type="integer"),
+ *     @OA\Property(property="status",type="integer"),
+ *     @OA\Property(property="type",type="string"),
+ *     required={"name","message","code","status","type"}
+ * )
  */
 
 /**
