@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'id' => 'app-api',
+    'id' => 'api',
     'basePath' => dirname(__DIR__),
     'modules' => [
         'v1' => [

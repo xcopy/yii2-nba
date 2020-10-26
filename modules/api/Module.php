@@ -13,8 +13,8 @@ use yii\base\Module as BaseModule;
  *     required=false,
  *     @OA\Schema(
  *         type="string",
- *         enum={"xml","json"},
- *         default="xml"
+ *         enum={"json","xml"},
+ *         default="json"
  *     )
  * )
  *
