@@ -2,7 +2,6 @@
 
 return [
     'id' => 'api',
-    'basePath' => dirname(__DIR__),
     'modules' => [
         'v1' => [
             'basePath' => '@api/modules/v1',
