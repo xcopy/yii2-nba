@@ -8,6 +8,7 @@ use yii\helpers\Json;
 use yii\rest\ActiveController;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
+use GraphQL\Error\DebugFlag;
 use app\modules\api\modules\v2\schema\QueryType;
 
 class GraphqlController extends ActiveController
@@ -63,6 +64,10 @@ class GraphqlController extends ActiveController
 
         $schema = new Schema(['query' => new QueryType]);
 
+        $debug = YII_DEBUG
+            ? DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE
+            : DebugFlag::NONE;
+
         return GraphQL::executeQuery(
             $schema,
             $query,
@@ -70,6 +75,6 @@ class GraphqlController extends ActiveController
             null,
             empty($variables) ? null : $variables,
             empty($operation) ? null : $operation
-        )->toArray();
+        )->toArray($debug);
     }
 }
