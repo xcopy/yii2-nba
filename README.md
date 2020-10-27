@@ -12,6 +12,19 @@
 - `./yii queue/run -v` (or `./yii queue/listen -v`)
 
 ## OpenAPI
-- `./vendor/bin/openapi ./modules/api --output web/` (`--format json`, optional)
+- `./vendor/bin/openapi ./modules/api --output web/`
 - `./yii serve`
 - Go to http://localhost:8080/api/v1
+
+## GraphQL
+- Go to http://localhost:8080/api/v2
+
+Run sample query:
+```
+{
+    player(id: 1) {
+        name from height weight
+        team { name }
+    }
+}
+```
