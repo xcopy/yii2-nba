@@ -13,6 +13,12 @@ class Types
     /** @var TeamType */
     private static $team;
 
+    /** @var QueryType */
+    private static $query;
+
+    /** @var MutationType */
+    private static $mutation;
+
     /**
      * @return PlayerType
      */
@@ -27,5 +33,21 @@ class Types
     public static function team()
     {
         return self::$team ?: (self::$team = new TeamType);
+    }
+
+    /**
+     * @return QueryType
+     */
+    public static function query()
+    {
+        return self::$query ?: (self::$query = new QueryType);
+    }
+
+    /**
+     * @return MutationType
+     */
+    public static function mutation()
+    {
+        return self::$mutation ?: (self::$mutation = new MutationType);
     }
 }

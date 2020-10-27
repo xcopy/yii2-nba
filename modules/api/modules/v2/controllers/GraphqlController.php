@@ -9,7 +9,7 @@ use yii\rest\ActiveController;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
 use GraphQL\Error\DebugFlag;
-use app\modules\api\modules\v2\schema\QueryType;
+use app\modules\api\modules\v2\schema\Types;
 
 class GraphqlController extends ActiveController
 {
@@ -62,7 +62,10 @@ class GraphqlController extends ActiveController
             }
         }
 
-        $schema = new Schema(['query' => new QueryType]);
+        $schema = new Schema([
+            'query' => Types::query(),
+            'mutation' => Types::mutation()
+        ]);
 
         $debug = YII_DEBUG
             ? DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE
