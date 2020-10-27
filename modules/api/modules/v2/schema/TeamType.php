@@ -15,8 +15,9 @@ class TeamType extends ObjectType
         $config = [
             'fields' => function (): array {
                 return [
-                    'id' => ['type' => Type::id()],
-                    'name' => ['type' => Type::string()],
+                    'id' => Type::id(),
+                    'name' => Type::string(),
+                    'division_id' => Type::id(),
                     'players' => Type::listOf(Types::player())
                 ];
             }

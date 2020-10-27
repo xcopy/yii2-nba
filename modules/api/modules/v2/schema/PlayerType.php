@@ -15,15 +15,15 @@ class PlayerType extends ObjectType
         $config = [
             'fields' => function (): array {
                 return [
-                    'id' => ['type' => Type::id()],
-                    'name' => ['type' => Type::string()],
-                    'from' => ['type' => Type::string()],
-                    'height' => ['type' => Type::float()],
-                    'weight' => ['type' => Type::float()],
-                    'born_at' => ['type' => Type::string()],
-                    'drafted_at' => ['type' => Type::string()],
-                    'team_id' => ['type' => Type::id()],
-                    'team' => ['type' => Types::team()]
+                    'id' => Type::id(),
+                    'name' => Type::string(),
+                    'from' => Type::string(),
+                    'height' => Type::float(),
+                    'weight' => Type::float(),
+                    'born_at' => Type::string(),
+                    'drafted_at' => Type::string(),
+                    'team_id' => Type::id(),
+                    'team' => Types::team()
                 ];
             }
         ];
