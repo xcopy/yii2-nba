@@ -19,12 +19,31 @@
 ## GraphQL
 - Go to http://localhost:8080/api/v2
 
-Run sample query:
+Run sample queries:
 ```
 {
-    player(id: 1) {
-        name from height weight
-        team { name }
+  team(id: 1) {
+    name
+    players {
+      name
     }
+  }
+}
+
+mutation {
+  createTeam(name: "Sample Team", division_id: 1) {
+    id
+    name
+  }
+}
+
+mutation {
+  updateTeam(id: 31, name: "Awesome Team") {
+    name
+  }
+}
+
+mutation {
+  deleteTeam(id: 31)
 }
 ```
