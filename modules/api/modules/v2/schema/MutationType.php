@@ -20,8 +20,8 @@ class MutationType extends ObjectType
                     'createTeam' => [
                         'type' => Types::team(),
                         'args' => [
-                            'name' => Type::string(),
-                            'division_id' => Type::id()
+                            'name' => Type::nonNull(Type::string()),
+                            'division_id' => Type::nonNull(Type::id())
                         ],
                         'resolve' => function ($root, $args) {
                             $team = new Team;
@@ -34,8 +34,8 @@ class MutationType extends ObjectType
                     'updateTeam' => [
                         'type' => Types::team(),
                         'args' => [
-                            'id' => Type::id(),
-                            'name' => Type::string(),
+                            'id' => Type::nonNull(Type::id()),
+                            'name' => Type::nonNull(Type::string()),
                             'division_id' => Type::id()
                         ],
                         'resolve' => function ($root, $args) {
@@ -49,7 +49,7 @@ class MutationType extends ObjectType
                     'deleteTeam' => [
                         'type' => Type::boolean(),
                         'args' => [
-                            'id' => Type::id()
+                            'id' => Type::nonNull(Type::id())
                         ],
                         'resolve' => fn ($root, $args) => (bool) Team::findOne($args['id'])->delete()
                     ]
