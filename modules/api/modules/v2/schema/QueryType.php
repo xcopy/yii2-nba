@@ -17,23 +17,27 @@ class QueryType extends ObjectType
         $config = [
             'fields' => function (): array {
                 return [
+                    'players' => [
+                        'type' => Type::listOf(Types::player()),
+                        'resolve' => fn (): array => Player::find()->all()
+                    ],
                     'player' => [
                         'type' => Types::player(),
                         'args' => [
                             'id' => Type::nonNull(Type::id())
                         ],
-                        'resolve' => function ($root, $args): Player {
-                            return Player::findOne($args['id']);
-                        }
+                        'resolve' => fn ($root, $args): Player => Player::findOne($args['id'])
+                    ],
+                    'teams' => [
+                        'type' => Type::listOf(Types::team()),
+                        'resolve' => fn (): array => Team::find()->all()
                     ],
                     'team' => [
                         'type' => Types::team(),
                         'args' => [
                             'id' => Type::nonNull(Type::id())
                         ],
-                        'resolve' => function ($root, $args): Team {
-                            return Team::findOne($args['id']);
-                        }
+                        'resolve' => fn ($root, $args): Team => Team::findOne($args['id'])
                     ]
                 ];
             }
