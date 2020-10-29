@@ -16,6 +16,11 @@
 - `./yii serve`
 - Go to http://localhost:8080/api/v1
 
+### Security
+
+- Use login/password `admin`/`admin` for `basicAuth` method
+- Use key `100-token` for `apiKey` method
+
 ## GraphQL
 - Go to http://localhost:8080/api/v2
 
