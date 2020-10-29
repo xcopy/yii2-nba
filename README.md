@@ -19,8 +19,18 @@
 ## GraphQL
 - Go to http://localhost:8080/api/v2
 
-Run sample queries:
+### Simple examples
+
+#### Queries
+
 ```
+{
+  players {
+    id
+    name
+  }
+}
+
 {
   team(id: 1) {
     name
@@ -29,7 +39,11 @@ Run sample queries:
     }
   }
 }
+```
 
+#### Mutations
+
+```
 mutation {
   createTeam(name: "Sample Team", division_id: 1) {
     id
@@ -45,5 +59,75 @@ mutation {
 
 mutation {
   deleteTeam(id: 31)
+}
+```
+
+### Complex queries
+
+#### Variables
+
+```
+query ($id: ID!) {
+  player(id: $id) {
+    id
+    name
+    team {
+      id
+      name
+    }
+  }
+}
+# Query variables
+{
+  "id": 1
+}
+```
+
+#### Directives
+
+```
+query ($id: ID!, $withTeam: Boolean!) {
+  player(id: $id) {
+    id
+    name
+    team @include(if: $withTeam) {
+      id
+      name
+    }
+  }
+}
+
+# Query variables
+{
+  "id": 1,
+  "withTeam": true
+}
+```
+
+#### Fragments
+
+```
+query ($id: ID!, $withPlayers: Boolean!) {
+  team(id: $id) {
+    ...teamFields
+  }
+}
+
+fragment playerFields on Player {
+  id
+  name
+}
+
+fragment teamFields on Team {
+  id
+  name
+  players @include(if: $withPlayers) {
+    ...playerFields
+  }
+}
+# Query variables
+{
+  "id": 1,
+  "withPlayers": true
 }
 ```
