@@ -2,9 +2,10 @@
 
 namespace app\modules\api\modules\v1\controllers;
 
-use yii\web\IdentityInterface;
 use yii\rest\ActiveController;
+use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
 use app\modules\api\modules\v1\models\Team;
 use app\models\User;
 
@@ -57,7 +58,7 @@ use app\models\User;
  *     summary="Delete a team",
  *     tags={"team"},
  *     security={
- *         {"apiKey": {}}
+ *         {"bearerAuth": {}}
  *     },
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\Response(response="204",description="Deleted successfully"),
@@ -77,12 +78,19 @@ class TeamController extends ActiveController
         $behaviors = parent::behaviors();
 
         $behaviors['authenticator'] = [
-            'class' => HttpBasicAuth::class,
-            'auth' => function (string $username, string $password) {
-                $user = User::findByUsername($username);
-                return $user->validatePassword($password) ? $user : null;
-            },
-            'only' => ['create', 'update', 'delete']
+            'class' => CompositeAuth::class,
+            'authMethods' => [
+                [
+                    'class' => HttpBasicAuth::class,
+                    'auth' => function (string $username, string $password) {
+                        $user = User::findByUsername($username);
+                        return $user->validatePassword($password) ? $user : null;
+                    }
+                ],
+                HttpBearerAuth::class
+            ],
+            // 'only' => [],
+            // 'except' => []
         ];
 
         return $behaviors;
