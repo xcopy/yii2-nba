@@ -13,6 +13,9 @@ use app\models\User;
  *     path="/team",
  *     summary="Get teams",
  *     tags={"team"},
+ *     security={
+ *         {"basicAuth": {}}
+ *     },
  *     @OA\Parameter(ref="#/components/parameters/page"),
  *     @OA\Parameter(ref="#/components/parameters/sort"),
  *     @OA\Parameter(ref="#/components/parameters/expand"),
@@ -29,7 +32,7 @@ use app\models\User;
  *     summary="Create new team",
  *     tags={"team"},
  *     security={
- *         {"basicAuth": {}}
+ *         {"apiKey": {}}
  *     },
  *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
  *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
@@ -40,6 +43,9 @@ use app\models\User;
  *     path="/team/update",
  *     summary="Update a team",
  *     tags={"team"},
+ *     security={
+ *         {"apiKey": {}}
+ *     },
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\RequestBody(ref="#/components/requestBodies/TeamRequestBody"),
  *     @OA\Response(response="200",ref="#/components/responses/TeamResponse"),
@@ -50,6 +56,9 @@ use app\models\User;
  *     path="/team/delete",
  *     summary="Delete a team",
  *     tags={"team"},
+ *     security={
+ *         {"apiKey": {}}
+ *     },
  *     @OA\Parameter(ref="#/components/parameters/id"),
  *     @OA\Response(response="204",description="Deleted successfully"),
  *     @OA\Response(response="default",ref="#/components/responses/default")
