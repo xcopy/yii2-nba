@@ -22,7 +22,8 @@ class Types
     /** @var MutationType */
     private static $mutation;
 
-    private static $errors;
+    /** @var ListOfType */
+    private static $validationErrors;
 
     /**
      * @return PlayerType
@@ -59,8 +60,8 @@ class Types
     /**
      * @return ListOfType
      */
-    public static function errors()
+    public static function validationErrors()
     {
-        return self::$errors ?: (self::$errors = Type::listOf(Type::string()));
+        return self::$validationErrors ?: (self::$validationErrors = Type::listOf(Type::string()));
     }
 }

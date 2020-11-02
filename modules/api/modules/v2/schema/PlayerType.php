@@ -23,7 +23,8 @@ class PlayerType extends ObjectType
                     'born_at' => Type::string(),
                     'drafted_at' => Type::string(),
                     'team_id' => Type::id(),
-                    'team' => Types::team()
+                    'team' => Types::team(),
+                    'errors' => new ValidationErrorsType($this)
                 ];
             }
         ];

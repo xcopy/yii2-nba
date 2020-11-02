@@ -19,7 +19,7 @@ class TeamType extends ObjectType
                     'name' => Type::string(),
                     'division_id' => Type::id(),
                     'players' => Type::listOf(Types::player()),
-                    'errors' => new TeamErrorsType
+                    'errors' => new ValidationErrorsType($this)
                 ];
             }
         ];
