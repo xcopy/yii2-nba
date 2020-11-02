@@ -57,8 +57,26 @@ mutation {
 }
 
 mutation {
+  createTeam(name: "", division_id: 0) {
+    name
+    _errors {
+        name
+    }
+  }
+}
+
+mutation {
   updateTeam(id: 31, name: "Awesome Team") {
     name
+  }
+}
+
+mutation {
+  updateTeam(id: 31, name: "") {
+    name
+    _errors {
+        name
+    }
   }
 }
 
