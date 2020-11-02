@@ -2,6 +2,7 @@
 
 namespace app\modules\api\modules\v2\schema;
 
+use Exception;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 // use app\models\Player;
@@ -39,11 +40,14 @@ class MutationType extends ObjectType
                             'division_id' => Type::id()
                         ],
                         'resolve' => function ($root, $args) {
-                            $team = Team::findOne($args['id']);
-                            $team->attributes = $args;
-                            $team->save();
+                            if ($team = Team::findOne($args['id'])) {
+                                $team->attributes = $args;
+                                $team->save();
 
-                            return $team;
+                                return $team;
+                            }
+
+                            throw new Exception('Team not found');
                         }
                     ],
                     'deleteTeam' => [
@@ -51,7 +55,13 @@ class MutationType extends ObjectType
                         'args' => [
                             'id' => Type::nonNull(Type::id())
                         ],
-                        'resolve' => fn ($root, $args) => (bool) Team::findOne($args['id'])->delete()
+                        'resolve' => function ($root, $args) {
+                            if ($team = Team::findOne($args['id'])) {
+                                return $team->delete();
+                            }
+
+                            throw new Exception('Team not found');
+                        }
                     ]
                 ];
             }
