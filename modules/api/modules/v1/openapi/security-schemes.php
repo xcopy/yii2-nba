@@ -16,6 +16,7 @@
  * @OA\SecurityScheme(
  *     securityScheme="apiKey",
  *     type="apiKey",
- *     in="header"
+ *     in="header",
+ *     name="X-Api-Key"
  * )
  */

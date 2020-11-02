@@ -5,6 +5,7 @@ namespace app\modules\api\modules\v1\controllers;
 use yii\rest\ActiveController;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpHeaderAuth;
 use yii\filters\auth\HttpBearerAuth;
 use app\modules\api\modules\v1\models\Team;
 use app\models\User;
@@ -87,6 +88,7 @@ class TeamController extends ActiveController
                         return $user->validatePassword($password) ? $user : null;
                     }
                 ],
+                HttpHeaderAuth::class,
                 HttpBearerAuth::class
             ],
             // 'only' => [],
