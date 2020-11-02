@@ -15,7 +15,7 @@ class TeamType extends ObjectType
     public function __construct()
     {
         $config = [
-            'fields' =>  [
+            'fields' =>  fn (): array => [
                 'id' => Type::int(),
                 'name' => Type::string(),
                 'division_id' => Type::int(),

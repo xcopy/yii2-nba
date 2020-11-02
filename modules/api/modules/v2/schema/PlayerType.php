@@ -13,20 +13,18 @@ class PlayerType extends ObjectType
     public function __construct()
     {
         $config = [
-            'fields' => function (): array {
-                return [
-                    'id' => Type::id(),
-                    'name' => Type::string(),
-                    'from' => Type::string(),
-                    'height' => Type::float(),
-                    'weight' => Type::float(),
-                    'born_at' => Type::string(),
-                    'drafted_at' => Type::string(),
-                    'team_id' => Type::id(),
-                    'team' => Types::team(),
-                    '_errors' => new ValidationErrorsType($this)
-                ];
-            },
+            'fields' => fn (): array => [
+                'id' => Type::id(),
+                'name' => Type::string(),
+                'from' => Type::string(),
+                'height' => Type::float(),
+                'weight' => Type::float(),
+                'born_at' => Type::string(),
+                'drafted_at' => Type::string(),
+                'team_id' => Type::id(),
+                'team' => Types::team(),
+                '_errors' => new ValidationErrorsType($this)
+            ],
             'resolveField' => new FieldResolver
         ];
 
