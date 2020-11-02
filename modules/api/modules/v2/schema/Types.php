@@ -2,6 +2,9 @@
 
 namespace app\modules\api\modules\v2\schema;
 
+use GraphQL\Type\Definition\ListOfType;
+use GraphQL\Type\Definition\Type;
+
 /**
  * @link https://webonyx.github.io/graphql-php/type-system/#type-registry
  */
@@ -18,6 +21,8 @@ class Types
 
     /** @var MutationType */
     private static $mutation;
+
+    private static $errors;
 
     /**
      * @return PlayerType
@@ -49,5 +54,13 @@ class Types
     public static function mutation()
     {
         return self::$mutation ?: (self::$mutation = new MutationType);
+    }
+
+    /**
+     * @return ListOfType
+     */
+    public static function errors()
+    {
+        return self::$errors ?: (self::$errors = Type::listOf(Type::string()));
     }
 }
