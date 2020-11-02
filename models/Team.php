@@ -26,7 +26,7 @@ class Team extends ActiveRecord
         return [
             [['name', 'division_id'], 'required'],
             [['division_id'], 'integer'],
-            [['name'], 'string', 'max' => 100],
+            [['name'], 'string', 'min' => 3, 'max' => 100],
             [['division_id'], 'exist', 'skipOnError' => true, 'targetClass' => Division::class, 'targetAttribute' => ['division_id' => 'id']],
         ];
     }

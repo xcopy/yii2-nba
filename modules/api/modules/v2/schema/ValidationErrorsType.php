@@ -27,8 +27,8 @@ class ValidationErrorsType extends ObjectType
                     $output[$field] = Types::validationErrors();
                 }
 
-                if (isset($output['errors'])) {
-                    unset($output['errors']);
+                if (isset($output['_errors'])) {
+                    unset($output['_errors']);
                 }
 
                 return $output;

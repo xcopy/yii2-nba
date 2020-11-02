@@ -4,6 +4,8 @@ namespace app\modules\api\modules\v2\schema;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use GraphQL\Type\Definition\ResolveInfo;
+use app\models\Team;
 
 class TeamType extends ObjectType
 {
@@ -13,14 +15,17 @@ class TeamType extends ObjectType
     public function __construct()
     {
         $config = [
-            'fields' => function (): array {
-                return [
-                    'id' => Type::id(),
-                    'name' => Type::string(),
-                    'division_id' => Type::id(),
-                    'players' => Type::listOf(Types::player()),
-                    'errors' => new ValidationErrorsType($this)
-                ];
+            'fields' =>  [
+                'id' => Type::int(),
+                'name' => Type::string(),
+                'division_id' => Type::int(),
+                'players' => Type::listOf(Types::player()),
+                '_errors' => new ValidationErrorsType($this)
+            ],
+            'resolveField' => function (Team $team, $args, $context, ResolveInfo $info) {
+                return $info->fieldName === '_errors'
+                    ? $team->errors
+                    : $team->{$info->fieldName};
             }
         ];
 
