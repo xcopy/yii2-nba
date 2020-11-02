@@ -4,6 +4,9 @@ namespace app\modules\api\modules\v2\controllers;
 
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\auth\HttpHeaderAuth;
 use yii\helpers\Json;
 use yii\rest\ActiveController;
 use GraphQL\GraphQL;
@@ -35,6 +38,26 @@ class GraphqlController extends ActiveController
     }
 
     /**
+     * @inheritDoc
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        /* todo: uncomment
+        $behaviors['authenticator'] = [
+            'class' => CompositeAuth::class,
+            'authMethods' => [
+                HttpHeaderAuth::class,
+                HttpBearerAuth::class
+            ]
+        ];
+        */
+
+        return $behaviors;
+    }
+
+    /**
      * GraphQL basic server
      *
      * @return array|mixed[]
@@ -47,7 +70,7 @@ class GraphqlController extends ActiveController
 
         if (empty($query)) {
             $rawInput = file_get_contents('php://input');
-            $input = json_decode($rawInput, true);
+            $input = Json::decode($rawInput, true);
 
             $query = $input['query'];
             $variables = $input['variables'] ?? [];
