@@ -15,7 +15,7 @@
     </style>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/graphiql/graphiql.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/graphiql/graphiql.min.css"/>
     <title>GraphQL IDE</title>
 </head>
 
@@ -23,19 +23,16 @@
 <div id="graphiql">Loading&hellip;</div>
 <script src="https://unpkg.com/graphiql/graphiql.min.js" type="application/javascript"></script>
 <script>
-    function graphQLFetcher(graphQLParams) {
-        return fetch(
-            '/api/v2/graphql',
-            {
-                method: 'post',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(graphQLParams),
-                credentials: 'omit',
-            },
-        ).then(function (response) {
+    function fetcher(params, opts) {
+        return fetch('/api/v2/graphql', {
+            method: 'post',
+            headers: Object.assign({
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, opts.headers || {}),
+            body: JSON.stringify(params),
+            credentials: 'omit'
+        }).then(function (response) {
             return response.json().catch(function () {
                 return response.text();
             });
@@ -44,8 +41,10 @@
 
     ReactDOM.render(
         React.createElement(GraphiQL, {
-            fetcher: graphQLFetcher,
+            fetcher: fetcher,
             defaultVariableEditorOpen: true,
+            headerEditorEnabled: true,
+            shouldPersistHeaders: true
         }),
         document.getElementById('graphiql'),
     );
