@@ -24,9 +24,10 @@ class PlayerType extends ObjectType
                     'drafted_at' => Type::string(),
                     'team_id' => Type::id(),
                     'team' => Types::team(),
-                    'errors' => new ValidationErrorsType($this)
+                    '_errors' => new ValidationErrorsType($this)
                 ];
-            }
+            },
+            'resolveField' => new FieldResolver
         ];
 
         parent::__construct($config);

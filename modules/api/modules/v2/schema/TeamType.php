@@ -22,11 +22,7 @@ class TeamType extends ObjectType
                 'players' => Type::listOf(Types::player()),
                 '_errors' => new ValidationErrorsType($this)
             ],
-            'resolveField' => function (Team $team, $args, $context, ResolveInfo $info) {
-                return $info->fieldName === '_errors'
-                    ? $team->errors
-                    : $team->{$info->fieldName};
-            }
+            'resolveField' => new FieldResolver
         ];
 
         parent::__construct($config);
