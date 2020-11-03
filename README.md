@@ -19,7 +19,7 @@
 ### Security
 
 - Use login/password `admin`/`admin` for `basicAuth` method
-- Use key `100-token` for `bearerAuth` and `apiKey` methods
+- Use `access_token` column value of `user` table for `bearerAuth` and `apiKey` methods
 
 ## GraphQL
 - Go to http://localhost:8080/api/v2
