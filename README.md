@@ -1,7 +1,7 @@
 ## Setup
 - `composer install && composer dump`
 - `cp .env.dist .env`
-- Configure database params in your `.env` file
+- Configure database (`DB_*`) and auth client (`FB_CLIENT_*`) params in your `.env` file
 - `./yii migrate`
 
 ## Queue

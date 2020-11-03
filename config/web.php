@@ -75,8 +75,8 @@ $config = [
                 'facebook' => [
                     'class' => 'yii\authclient\clients\Facebook',
                     // 'attributeNames' => ['email', 'username'],
-                    'clientId' => '2203681859777478',
-                    'clientSecret' => '77664ff075aa4fbf6dbfd21e555185ac'
+                    'clientId' => env('FB_CLIENT_ID'),
+                    'clientSecret' => env('FB_CLIENT_SECRET')
                 ]
             ]
         ]
