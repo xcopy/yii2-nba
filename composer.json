@@ -23,7 +23,8 @@
         "guzzlehttp/guzzle": "^7.2",
         "yiisoft/yii2-redis": "^2.0",
         "dompdf/dompdf": "^0.8.6",
-        "webonyx/graphql-php": "^14.3"
+        "webonyx/graphql-php": "^14.3",
+        "yiisoft/yii2-authclient": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
