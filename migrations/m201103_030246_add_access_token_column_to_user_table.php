@@ -20,15 +20,20 @@ class m201103_030246_add_access_token_column_to_user_table extends Migration
         );
 
         try {
-            $this->insert('{{%user}}', [
+            $columns = [
                 'username' => 'admin',
-                'auth_key' => Yii::$app->security->generateRandomString(32),
+                'auth_key' => Yii::$app->security->generateRandomString(),
                 'password_hash' => Yii::$app->security->generatePasswordHash('admin'),
                 'email' => 'admin@example.com',
                 'created_at' => time(),
-                'updated_at' => time(),
-                'access_token' => Yii::$app->security->generateRandomString(64)
-            ]);
+                'updated_at' => time()
+            ];
+
+            foreach (['password_reset_token', 'verification_token', 'access_token'] as $key) {
+                $columns[$key] = Yii::$app->security->generateRandomString();
+            }
+
+            $this->insert('{{%user}}', $columns);
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }

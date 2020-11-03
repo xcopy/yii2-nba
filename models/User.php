@@ -53,7 +53,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token', 'access_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -196,45 +196,93 @@ class User extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @return static
      * @throws Exception
      */
     public function setPassword($password)
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+
+        return $this;
     }
 
     /**
      * Generates "remember me" authentication key
+     *
+     * @return static
      * @throws Exception
      */
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+
+        return $this;
     }
 
     /**
      * Generates new password reset token
+     *
+     * @return static
      * @throws Exception
      */
     public function generatePasswordResetToken()
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+
+        return $this;
     }
 
     /**
      * Generates new token for email verification
+     *
+     * @return static
      * @throws Exception
      */
     public function generateEmailVerificationToken()
     {
         $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+
+        return $this;
+    }
+
+    /**
+     * Generates new token for authentication
+     *
+     * @param int $length
+     * @return static
+     * @throws Exception
+     */
+    public function generateAccessToken(int $length = 32)
+    {
+        $this->access_token = Yii::$app->security->generateRandomString($length);
+
+        return $this;
+    }
+
+    /**
+     * Generates all tokens
+     *
+     * @return $this
+     * @throws Exception
+     */
+    public function generateTokens()
+    {
+        $this->generatePasswordResetToken()
+            ->generateEmailVerificationToken()
+            ->generateAccessToken();
+
+        return $this;
     }
 
     /**
      * Removes password reset token
+     *
+     * @return static
      */
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+
+        return $this;
     }
 }
