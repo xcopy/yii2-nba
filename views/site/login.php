@@ -6,11 +6,13 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\authclient\ClientInterface;
+use yii\authclient\widgets\AuthChoice;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="container-fluid">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
@@ -40,7 +42,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-    <div class="col-lg-offset-1" style="color:#999;">
+    <div class="col-lg-offset-1 text-muted">
         You may login with <strong>admin/admin</strong>.
+    </div>
+
+    <hr>
+
+    <div class="d-flex align-items-center">
+        <div class="mr-3">Login with:</div>
+        <div>
+            <?php $authAuthChoice = AuthChoice::begin([
+                'baseAuthUrl' => ['site/auth'],
+                'popupMode' => false
+            ]); ?>
+
+            <ul class="list-inline mb-0" style="line-height: 1">
+                <?php /** @var ClientInterface $client */ ?>
+                <?php foreach ($authAuthChoice->getClients() as $client): ?>
+                    <li class="list-inline-item"><?= $authAuthChoice->clientLink($client) ?></li>
+                <?php endforeach; ?>
+            </ul>
+
+            <?php AuthChoice::end(); ?>
+        </div>
     </div>
 </div>

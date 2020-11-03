@@ -2,14 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\Conference;
+use Exception;
 use Yii;
+use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Conference;
+use app\components\AuthHandler;
 
 class SiteController extends Controller
 {
@@ -20,7 +23,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -31,7 +34,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -52,7 +55,26 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess']
+            ]
         ];
+    }
+
+    /**
+     * Handles authentication via auth client
+     *
+     * @param ClientInterface $client
+     * @return void
+     */
+    public function onAuthSuccess(ClientInterface $client): void
+    {
+        try {
+            (new AuthHandler($client))->handle();
+        } catch (Exception $e) {
+            Yii::$app->getSession()->setFlash('error', $e->getMessage());
+        }
     }
 
     /**
