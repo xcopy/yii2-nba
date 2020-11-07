@@ -1,9 +1,55 @@
-version: '2'
+version: "3"
+
 services:
   php:
-    image: yiisoftware/yii2-php:7.1-apache
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: nba
+    container_name: nba-php
+    restart: unless-stopped
+    working_dir: /var/www/
     volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+      - ./:/var/www
+    networks:
+      - default
+  mysql:
+    image: mysql:latest
+    container_name: nba-db-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: yii2_nba
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - default
+  pgsql:
+    image: postgres:latest
+    container_name: nba-db-pgsql
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: yii2_nba
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./docker-compose/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - default
+  nginx:
+    image: nginx:latest
+    container_name: nba-nginx
+    restart: unless-stopped
     ports:
-      - '8000:80'
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge

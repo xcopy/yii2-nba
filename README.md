@@ -5,6 +5,14 @@
 - Configure database (`DB_*`) and auth client (`FB_CLIENT_*`) params in your `.env` file
 - `./yii migrate`
 
+## Docker
+- Install [docker](https://docs.docker.com/engine/install) and [docker-compose](https://docs.docker.com/compose/install)
+- Change `host` to `mysql` or `pgsql` in `DB_DSN` line in the `.env` file
+- `docker-compose build`
+- `docker-compose up -d`
+- `docker-compose exec php ./yii migrate` (all commands should be executed like this `docker-compose exec php ./yii <command>`)
+- Go to http://localhost:8000
+
 ## Queue
 - Configure queue params in your `.env` file (install `redis-server` & `redis-tools`, optional)
 - `./yii storage/link`
