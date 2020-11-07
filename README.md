@@ -1,4 +1,5 @@
 ## Setup
+- Create database `yii2_nba`
 - `composer install && composer dump`
 - `cp .env.dist .env`
 - Configure database (`DB_*`) and auth client (`FB_CLIENT_*`) params in your `.env` file
@@ -24,7 +25,7 @@
 ## GraphQL
 - Go to http://localhost:8080/api/v2
 
-### Simple examples
+### Simple queries
 
 #### Queries
 
