@@ -13,27 +13,27 @@ services:
       - ./:/var/www
     networks:
       - default
-  mysql:
-    image: mysql:latest
-    container_name: nba-db-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: yii2_nba
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
-    networks:
-      - default
+#  mysql:
+#    image: mysql:latest
+#    container_name: nba-db-mysql
+#    restart: unless-stopped
+#    environment:
+#      MYSQL_DATABASE: ${DB_NAME}
+#      MYSQL_USER: ${DB_USERNAME}
+#      MYSQL_PASSWORD: ${DB_PASSWORD}
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+#    networks:
+#      - default
   pgsql:
     image: postgres:latest
     container_name: nba-db-pgsql
     restart: unless-stopped
     environment:
-      POSTGRES_DB: yii2_nba
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./docker-compose/postgres:/docker-entrypoint-initdb.d
     networks:

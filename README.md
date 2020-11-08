@@ -7,9 +7,11 @@
 
 ## Docker
 - Install [docker](https://docs.docker.com/engine/install) and [docker-compose](https://docs.docker.com/compose/install)
-- Change `host` to `mysql` or `pgsql` in `DB_DSN` line in the `.env` file
-- `docker-compose build`
-- `docker-compose up -d`
+- Change `DB_HOST` to `mysql` or `pgsql` in the `.env` file (https://docs.docker.com/compose/networking)
+- `docker-compose down` (stops and removes containers, networks, volumes and images)
+- `docker-compose build` ((re-)build services)
+- `docker-compose up` (builds, (re)creates, starts and attaches to containers for a service)
+- Wait until the database is started
 - `docker-compose exec php ./yii migrate` (all commands should be executed like this `docker-compose exec php ./yii <command>`)
 - Go to http://localhost:8000
 
