@@ -3,6 +3,9 @@ version: "3"
 services:
   php:
     build:
+      args:
+        user: lebron
+        uid: 1000
       context: ./
       dockerfile: Dockerfile
     image: nba
