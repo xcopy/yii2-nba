@@ -1,1 +1,1 @@
-CREATE DATABASE yii2_nba TEMPLATE template0 ENCODING = 'UTF8';
+/** PostgreSQL database initialization script goes here */
