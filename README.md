@@ -6,13 +6,18 @@
 - `./yii migrate`
 
 ## Docker
-- Install [docker](https://docs.docker.com/engine/install) and [docker-compose](https://docs.docker.com/compose/install)
+- Install [docker](https://docs.docker.com/engine/install), [docker-compose](https://docs.docker.com/compose/install) (and other related software)
 - Change `DB_HOST` to `mysql` or `pgsql` in the `.env` file (https://docs.docker.com/compose/networking)
 - `docker-compose down` (stops and removes containers, networks, volumes and images)
-- `docker-compose build` ((re-)build services)
+- `docker-compose build` ((re)build services)
 - `docker-compose up` (builds, (re)creates, starts and attaches to containers for a service)
 - Wait until the database is started
-- `docker-compose exec php ./yii migrate` (all commands should be executed like this `docker-compose exec php ./yii <command>`)
+- Start new terminal tab and execute commands below in a running container:
+    - `docker-compose exec php composer install`
+    - `docker-compose exec php ./yii migrate` (all Yii commands should be executed like `docker-compose exec php ./yii <command>`)
+- Access to a other containers' console (optional):
+    - Nginx `docker-compose exec nginx bash`
+    - PostgreSQL `docker-compose exec pgsql bash`
 - Go to http://localhost:8000
 
 ## Queue
